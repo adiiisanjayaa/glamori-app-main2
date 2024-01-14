@@ -28,12 +28,10 @@ import '../modules/resetPasswordPin/bindings/reset_password_pin_binding.dart';
 import '../modules/resetPasswordPin/views/reset_password_pin_view.dart';
 import '../modules/rootPage/bindings/root_page_binding.dart';
 import '../modules/rootPage/views/root_page_view.dart';
-import '../modules/treatmentOnsiteDetail/bindings/treatment_onsite_detail_binding.dart';
-import '../modules/treatmentOnsiteDetail/views/treatment_onsite_detail_view.dart';
 import '../modules/treatmentPages/bindings/treatment_pages_binding.dart';
 import '../modules/treatmentPages/views/treatment_pages_view.dart';
-import '../modules/treatmentVirtualDetail/bindings/treatment_virtual_detail_binding.dart';
-import '../modules/treatmentVirtualDetail/views/treatment_virtual_detail_view.dart';
+import '../modules/treatmentDetail/bindings/treatment_detail_binding.dart';
+import '../modules/treatmentDetail/views/treatment_detail_view.dart';
 
 part 'app_routes.dart';
 
@@ -119,14 +117,9 @@ class AppPages {
       binding: TreatmentPagesBinding(),
     ),
     GetPage(
-      name: _Paths.treatmentVirtualDetail,
-      page: () => const TreatmentVirtualDetailView(),
-      binding: TreatmentVirtualDetailBinding(),
-    ),
-    GetPage(
-      name: _Paths.treatmentOnsiteDetail,
-      page: () => const TreatmentOnsiteDetailView(),
-      binding: TreatmentOnsiteDetailBinding(),
+      name: _Paths.treatmentVirtual,
+      page: () => const TreatmentDetailView(),
+      binding: TreatmentDetailBinding(),
     ),
     GetPage(
       name: _Paths.pesananKonsultasiPage,

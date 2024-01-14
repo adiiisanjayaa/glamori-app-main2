@@ -17,7 +17,7 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: AppColors.secondary,
       body: SafeArea(
@@ -85,6 +85,7 @@ class ProfileWidget extends StatelessWidget {
                   GestureDetector(
                     onTap: () async {
                       await controller.initEdit();
+                      // ignore: use_build_context_synchronously
                       showModalBottomSheet<void>(
                         context: context,
                         isScrollControlled: true,
@@ -290,7 +291,7 @@ class ProfileWidget extends StatelessWidget {
                         builder: (BuildContext context) {
                           return SingleChildScrollView(
                             child: Form(
-                              key: _formKey,
+                              key: formKey,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -434,7 +435,7 @@ class ProfileWidget extends StatelessWidget {
                                       Expanded(
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            if (_formKey.currentState?.validate() == true) {
+                                            if (formKey.currentState?.validate() == true) {
                                               showAlertDialogChangePassword(context, "Yakin ingin mengubah kata sandi?");
                                             }
                                           },

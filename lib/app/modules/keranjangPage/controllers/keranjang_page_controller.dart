@@ -17,7 +17,7 @@ class KeranjangPageController extends GetxController {
     update();
 
     var sqlHelper = await SqlLiteHelper.instance.cartTable;
-    var result = await sqlHelper.updateCheckedAllProduct(isAllChecked ? 1 : 0);
+    await sqlHelper.updateCheckedAllProduct(isAllChecked ? 1 : 0);
 
     getCart();
   }
@@ -34,7 +34,6 @@ class KeranjangPageController extends GetxController {
   getCart() async {
     var sqlHelper = await SqlLiteHelper.instance.cartTable;
     carts = await sqlHelper.getAllCart();
-    print(carts.length);
 
     update();
   }

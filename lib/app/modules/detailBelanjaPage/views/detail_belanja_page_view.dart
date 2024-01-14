@@ -169,11 +169,6 @@ class AnimatedBottomBar extends StatelessWidget {
         child: GetBuilder<DetailBelanjaPageController>(
           init: DetailBelanjaPageController(),
           builder: (controller) {
-            String? name = controller.detailProduct?.data?.name;
-            String? id = controller.detailProduct?.data?.sId;
-            String? description = controller.detailProduct?.data?.description;
-            String? productImage = controller.detailProduct?.data?.image;
-            int? price = controller.detailProduct?.data?.price;
             return Row(
               children: [
                 GestureDetector(

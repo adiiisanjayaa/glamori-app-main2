@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:glamori/app/data/model/model_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,7 +23,7 @@ class SharedPreferencesHelper {
         final Map<String, dynamic> userMap = jsonDecode(userData);
         return ModelUser.fromJson(userMap);
       } catch (e) {
-        print("Error decoding user data: $e");
+        log("Error decoding user data: $e");
       }
     }
 

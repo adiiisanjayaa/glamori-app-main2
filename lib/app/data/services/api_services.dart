@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -11,6 +12,8 @@ import 'package:glamori/app/data/model/model_get_profile.dart';
 import 'package:glamori/app/data/model/model_login.dart';
 import 'package:glamori/app/data/model/model_post_transaction.dart';
 import 'package:glamori/app/data/model/model_register.dart';
+import 'package:glamori/app/data/model/model_schedule.dart';
+import 'package:intl/intl.dart';
 
 class ApiServices {
   static Future<ModelLogin?> login({required String phone, required String password}) async {
@@ -24,7 +27,7 @@ class ApiServices {
         'password': password,
       });
     } on DioException catch (e) {
-      // print("catch:: ");
+      // log("catch:: ");
       // log(e.response);
       EasyLoading.showError(e.response?.data['message']);
       return null;
@@ -60,8 +63,8 @@ class ApiServices {
         'password': password,
       });
     } on DioException catch (e) {
-      // print("catch:: ");
-      // print(e.response);
+      // log("catch:: ");
+      // log(e.response);
       EasyLoading.showError(e.response?.data['message']);
       return null;
     }
@@ -85,7 +88,7 @@ class ApiServices {
 
     try {
       Response response = await dio.get(url);
-      // print(response.data);
+      // log(response.data);
       if (response.statusCode == 200) {
         var modelAllUser = ModelGetProfile.fromJson(response.data);
 
@@ -94,7 +97,7 @@ class ApiServices {
         return null;
       }
     } catch (e) {
-      // print(e);
+      // log(e);
       return null;
     }
   }
@@ -108,7 +111,7 @@ class ApiServices {
 
     try {
       Response response = await dio.get(url);
-      // print(response.data);
+      // log(response.data);
       if (response.statusCode == 200) {
         var modelDetail = ModelDetailProduct.fromJson(response.data);
         EasyLoading.dismiss();
@@ -118,7 +121,7 @@ class ApiServices {
         return null;
       }
     } catch (e) {
-      // print(e);
+      // log(e);
       EasyLoading.dismiss();
       return null;
     }
@@ -131,6 +134,7 @@ class ApiServices {
   }) async {
     Dio dio = ApiInterface.instance.api;
     String url = 'auth/change-password/$id';
+    // ignore: unused_local_variable
     Response? result;
 
     try {
@@ -140,8 +144,8 @@ class ApiServices {
       });
       return true;
     } on DioException catch (e) {
-      // print("catch:: ");
-      // print(e.response);
+      // log("catch:: ");
+      // log(e.response);
       EasyLoading.showError(e.response?.data['message']);
       return false;
     }
@@ -168,8 +172,8 @@ class ApiServices {
         'phone': phone,
       });
     } on DioException catch (e) {
-      // print("catch:: ");
-      // print(e.response);
+      // log("catch:: ");
+      // log(e.response);
       EasyLoading.showError(e.response?.data['message']);
       return false;
     }
@@ -206,14 +210,14 @@ class ApiServices {
       );
 
       if (response.statusCode == 200) {
-        print('Image uploaded successfully');
-        print('Server response: ${response.data}');
+        log('Image uploaded successfully');
+        log('Server response: ${response.data}');
       } else {
-        print('Image upload failed with status code: ${response.statusCode}');
+        log('Image upload failed with status code: ${response.statusCode}');
       }
-    } on DioError catch (e) {
-      print('DioError: $e');
-      print('Error message: ${e.response?.data}');
+    } on DioException catch (e) {
+      log('DioError: $e');
+      log('Error message: ${e.response?.data}');
     }
   }
 
@@ -240,15 +244,15 @@ class ApiServices {
 
           return true;
         } else {
-          print('Image upload failed with status code: ${response.statusCode}');
+          log('Image upload failed with status code: ${response.statusCode}');
           return false;
         }
       } else {
-        print('Image file does not exist');
+        log('Image file does not exist');
         return false;
       }
-    } on DioError catch (e) {
-      print('DioError: $e');
+    } on DioException catch (e) {
+      log('DioError: $e');
       EasyLoading.showError(e.response?.data['message']);
       return false;
     }
@@ -260,7 +264,7 @@ class ApiServices {
 
     try {
       Response response = await dio.get(url);
-      // print(response.data);
+      // log(response.data);
       if (response.statusCode == 200) {
         var modelGetAllProduct = ModelGetAllProduct.fromJson(response.data);
 
@@ -269,7 +273,7 @@ class ApiServices {
         return null;
       }
     } catch (e) {
-      // print(e);
+      // log(e);
       return null;
     }
   }
@@ -283,8 +287,8 @@ class ApiServices {
     try {
       result = await dio.post(url, data: modelCard.toJson());
     } on DioException catch (e) {
-      // print("catch:: ");
-      // print(e.response);
+      // log("catch:: ");
+      // log(e.response);
       EasyLoading.showError(e.response?.data['message']);
       return null;
     }
@@ -300,6 +304,36 @@ class ApiServices {
     } else {
       var modelAuth = ModelLogin.fromJson(result.data);
       EasyLoading.showError(modelAuth.message.toString());
+      return null;
+    }
+  }
+
+  Future<ScheduleModel?> getSchedule({DateTime? date, String? idUser}) async {
+    Dio dio = ApiInterface.instance.api;
+    String url = 'schedule';
+    Map<String, dynamic>? queryParameters = {};
+    if (date != null) {
+      final f = DateFormat('yyyy-MM-dd');
+      var newdate = f.format(date);
+      queryParameters.addAll({"fromDate": newdate});
+    }
+
+    if (idUser != null) {
+      queryParameters.addAll({"patient": idUser.toString()});
+    }
+
+    try {
+      Response response = await dio.get(url, queryParameters: queryParameters);
+
+      if (response.statusCode == 200) {
+        var modelGetAllProduct = ScheduleModel.fromJson(response.data);
+
+        return modelGetAllProduct;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      // log(e);
       return null;
     }
   }

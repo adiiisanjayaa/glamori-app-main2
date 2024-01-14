@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -94,7 +96,7 @@ class KeranjangPageView extends GetView<KeranjangPageController> {
                       ),
                       QtyButton(
                         onMin: () {
-                          print("onmin");
+                          log("onmin");
                           var itemQty = (item.qty ?? 0);
                           controller.updateQty(item.data?.sId ?? '', itemQty > 1 ? itemQty - 1 : 1);
                           // Update the corresponding qty controller
@@ -107,7 +109,7 @@ class KeranjangPageView extends GetView<KeranjangPageController> {
                           // }
                         },
                         onPlus: () {
-                          print("onPlus");
+                          log("onPlus");
                           var itemQty = (item.qty ?? 0);
                           controller.updateQty(item.data?.sId ?? '', itemQty >= 1 ? itemQty + 1 : 1);
                           // Update the corresponding qty controller
@@ -261,6 +263,7 @@ class QtyButton extends StatefulWidget {
   final String qty;
 
   @override
+  // ignore: library_private_types_in_public_api
   _QtyButtonState createState() => _QtyButtonState();
 }
 

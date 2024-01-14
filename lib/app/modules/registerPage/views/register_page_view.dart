@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,7 +14,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
   const RegisterPageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: AppColors.secondary,
       body: GetBuilder<RegisterPageController>(builder: (controller) {
@@ -26,7 +28,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                 ),
               ),
               Form(
-                key: _formKey,
+                key: formKey,
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(15),
@@ -264,7 +266,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                           ).marginOnly(right: 25).marginSymmetric(vertical: 15),
                           ElevatedButton(
                             onPressed: () {
-                              if (_formKey.currentState?.validate() == true) {
+                              if (formKey.currentState?.validate() == true) {
                                 controller.register(context);
                               }
                             },

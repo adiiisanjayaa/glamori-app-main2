@@ -18,7 +18,7 @@ abstract class Routes {
   static const keranjangPage = _Paths.keranjangPage;
   static const faqPage = _Paths.faqPage;
   static const treatmentPage = _Paths.treatmentPage;
-  static const treatmentVirtualPage = _Paths.treatmentVirtualDetail;
+  static const treatmentVirtualPage = _Paths.treatmentVirtual;
   static const treatmentOnsitePage = _Paths.treatmentOnsiteDetail;
   static const pesananKonsultasiPage = _Paths.pesananKonsultasiPage;
 }
@@ -40,7 +40,7 @@ abstract class _Paths {
   static const keranjangPage = '/keranjang-page';
   static const faqPage = '/faq-page';
   static const treatmentPage = '/treatment-pages';
-  static const treatmentVirtualDetail = '/treatment-virtual-detail';
+  static const treatmentVirtual = '/treatment-detail';
   static const treatmentOnsiteDetail = '/treatment-onsite-detail';
   static const pesananKonsultasiPage = '/pesanan-konsultasi-page';
 }

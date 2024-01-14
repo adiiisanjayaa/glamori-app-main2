@@ -1,3 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
+import 'dart:developer';
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -482,7 +486,7 @@ class ItemStore extends StatelessWidget {
             await launch(link);
           } else {
             // Handle error, e.g., show an alert
-            print('Could not launch $link');
+            log('Could not launch $link');
           }
         },
         child: Column(

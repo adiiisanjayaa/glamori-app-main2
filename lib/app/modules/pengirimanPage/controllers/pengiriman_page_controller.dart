@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glamori/app/data/model/model_card_upload.dart';
@@ -39,13 +41,13 @@ class PengirimanPageController extends GetxController {
       var result = await ApiServices.postTransaction(modelCard: cardUpload);
 
       if (result != null) {
-        print('berhasil');
+        log('berhasil');
         var id = result.data?.transactionId ?? '';
 
         return id;
       }
     } else {
-      print("Belum login ");
+      log("Belum login ");
     }
     return null;
   }
@@ -73,13 +75,13 @@ class PengirimanPageController extends GetxController {
     try {
       Map<String, dynamic>? arguments = Get.arguments;
       product = arguments?['product'] as List<ModelDetailProduct?>?;
-      print(product?.length);
+
       product?.forEach((element) {
         subTotal += element?.data?.price ?? 0;
       });
       totalPrice = subTotal * 1.1;
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
     var dataLogin = await UserService.find.getLocalUser();
 

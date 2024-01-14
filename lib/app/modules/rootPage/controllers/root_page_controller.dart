@@ -15,6 +15,7 @@ import 'package:glamori/app/modules/rootPage/views/widgets/home_widget.dart';
 import 'package:glamori/app/modules/rootPage/views/widgets/login_widget.dart';
 import 'package:glamori/app/modules/rootPage/views/widgets/profile_widget.dart';
 import 'package:glamori/app/modules/rootPage/views/widgets/transaksi_widget.dart';
+import 'package:glamori/app/modules/treatmentPages/controllers/treatment_pages_controller.dart';
 import 'package:glamori/app/modules/treatmentPages/views/treatment_pages_view.dart';
 import 'package:glamori/app/routes/app_pages.dart';
 import 'package:glamori/core/assets.dart';
@@ -45,6 +46,10 @@ class RootPageController extends GetxController {
   onItemTapped(int value) {
     selectedIndex = value;
     update();
+    if (value == 1) {
+      TreatmentPagesController controllerTreatment = Get.isRegistered<TreatmentPagesController>() ? Get.find<TreatmentPagesController>() : Get.put(TreatmentPagesController());
+      controllerTreatment.init();
+    }
   }
 
 //image coursel home
@@ -107,7 +112,7 @@ class RootPageController extends GetxController {
         );
       },
     );
-    if (picked != null && picked != dateController.text) {
+    if (picked != null) {
       dateController.text = "${picked.day}-${picked.month}-${picked.year}";
     }
   }
@@ -298,9 +303,6 @@ class RootPageController extends GetxController {
     update();
   }
 
-  List<String> itemsTreatment = ['On-site Appointment', 'Virtual Appointment'];
-  String? selectedItemTreatment;
-
   List<String> dateAppoinment = [
     '3',
     '1',
@@ -309,42 +311,10 @@ class RootPageController extends GetxController {
   ];
 
   int currentData = 0;
-  setTreatment(value) {
-    selectedItemTreatment = value;
-    update();
-  }
 
   setCurrentData(int val) {
     currentData = val;
     update();
-  }
-
-  TextEditingController dateTreatmentController = TextEditingController();
-
-  Future<void> selectDateTreatment(BuildContext context) async {
-    DateTime now = DateTime.now();
-    DateTime lastDate = DateTime(now.year + 3, now.month, now.day, 23, 59, 59);
-
-    DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: now,
-      firstDate: DateTime(1900),
-      lastDate: lastDate,
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            primaryColor: AppColors.yellow,
-            colorScheme: const ColorScheme.light(primary: AppColors.yellow),
-            buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
-          ),
-          child: child ?? const SizedBox.shrink(),
-        );
-      },
-    );
-
-    if (picked != null && picked != dateTreatmentController.text) {
-      dateTreatmentController.text = "${picked.day}-${picked.month}-${picked.year}";
-    }
   }
 
   final count = 0.obs;

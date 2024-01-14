@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glamori/app/data/services/api_services.dart';
@@ -42,7 +44,7 @@ class RegisterPageController extends GetxController {
 
     if (result != null) {
       if (result.message == "Register Success") {
-        print('berhasil');
+        log('berhasil');
       } else {}
 
       Get.toNamed(Routes.rootPage);
@@ -74,7 +76,7 @@ class RegisterPageController extends GetxController {
         );
       },
     );
-    if (picked != null && picked != dateController.text) {
+    if (picked != null) {
       dateController.text = "${picked.day}-${picked.month}-${picked.year}";
     }
   }

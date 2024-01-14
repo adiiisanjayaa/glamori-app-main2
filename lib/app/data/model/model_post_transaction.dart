@@ -12,9 +12,9 @@ class ModelPostTransaction {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data?.toJson();
     }
@@ -25,7 +25,7 @@ class ModelPostTransaction {
 class Data {
   String? transactionId;
   String? patient;
-  Null doctor;
+  dynamic doctor;
   List<Items>? items;
   String? payment;
   String? status;
@@ -61,7 +61,7 @@ class Data {
     if (json['items'] != null) {
       items = <Items>[];
       json['items'].forEach((v) {
-        items?.add(new Items.fromJson(v));
+        items?.add(Items.fromJson(v));
       });
     }
     payment = json['payment'];
@@ -77,23 +77,23 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['transactionId'] = this.transactionId;
-    data['patient'] = this.patient;
-    data['doctor'] = this.doctor;
-    if (this.items != null) {
-      data['items'] = this.items?.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['transactionId'] = transactionId;
+    data['patient'] = patient;
+    data['doctor'] = doctor;
+    if (items != null) {
+      data['items'] = items?.map((v) => v.toJson()).toList();
     }
-    data['payment'] = this.payment;
-    data['status'] = this.status;
-    data['tax'] = this.tax;
-    data['consultationPrice'] = this.consultationPrice;
-    data['totalPrice'] = this.totalPrice;
-    data['mobileOrder'] = this.mobileOrder;
-    data['branch'] = this.branch;
-    data['_id'] = this.sId;
-    data['date'] = this.date;
-    data['__v'] = this.iV;
+    data['payment'] = payment;
+    data['status'] = status;
+    data['tax'] = tax;
+    data['consultationPrice'] = consultationPrice;
+    data['totalPrice'] = totalPrice;
+    data['mobileOrder'] = mobileOrder;
+    data['branch'] = branch;
+    data['_id'] = sId;
+    data['date'] = date;
+    data['__v'] = iV;
     return data;
   }
 }
@@ -124,16 +124,16 @@ class Items {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['category'] = this.category;
-    data['doctorCommision'] = this.doctorCommision;
-    data['qty'] = this.qty;
-    data['price'] = this.price;
-    data['discount'] = this.discount;
-    data['discountPrice'] = this.discountPrice;
-    data['commisionPrice'] = this.commisionPrice;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['name'] = name;
+    data['category'] = category;
+    data['doctorCommision'] = doctorCommision;
+    data['qty'] = qty;
+    data['price'] = price;
+    data['discount'] = discount;
+    data['discountPrice'] = discountPrice;
+    data['commisionPrice'] = commisionPrice;
     return data;
   }
 }

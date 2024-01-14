@@ -63,7 +63,6 @@ class ResetPasswordPinView extends GetView<ResetPasswordPinController> {
                 textStyle: AppStyle.styleTextBody22(fontWeight: FontWeight.bold),
                 onComplete: (output) {
                   // Your logic with pin code
-                  print(output);
                 },
               ).marginSymmetric(horizontal: 20).marginSymmetric(vertical: 30),
               ElevatedButton(

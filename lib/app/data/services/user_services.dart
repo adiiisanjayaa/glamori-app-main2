@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:glamori/app/data/model/model_user.dart';
 import 'package:glamori/app/data/storage_name.dart';
@@ -15,7 +16,7 @@ class UserService extends GetxService {
       try {
         user = ModelUser.fromJson(json.decode(userData.toString()));
       } catch (e) {
-        print("error parse user $e");
+        log("error parse user $e");
       }
     }
 
