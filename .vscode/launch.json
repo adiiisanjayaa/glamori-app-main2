@@ -1,0 +1,59 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "glamori (ios-dev)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "program": "lib/main.dart",
+            "args": [
+                "--debug",
+                "--dart-define",
+                "API_URL=glamori.com",
+            ]
+        },
+        {
+            "name": "glamori (ios-prod)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "program": "lib/main.dart",
+            "args": [
+                "--debug",
+                "--dart-define",
+                "API_URL=glamori.com",
+            ]
+        },
+        {
+            "name": "glamori (prod)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "program": "lib/main_app_release.dart",
+            "args": [
+                "--flavor",
+                "app_release",
+                "lib/main_app_release.dart",
+                "--debug",
+                "--dart-define",
+                "API_URL=glamori.com",
+            ]
+        },
+        {
+            "name": "glamori (dev)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "program": "lib/main_app_staging.dart",
+            "args": [
+                "--flavor",
+                "app_release",
+                "lib/main_app_staging.dart",
+                "--debug",
+                "--dart-define",
+                "API_URL=dev.glamori.com",
+            ]
+        },
+    ]
+}

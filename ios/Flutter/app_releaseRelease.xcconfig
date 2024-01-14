@@ -1,0 +1,6 @@
+#include "Generated.xcconfig"
+
+FLUTTER_TARGET=lib/main_app_release.dart
+ASSET_PREFIX=app_release
+BUNDLE_NAME=Glamori
+BUNDLE_DISPLAY_NAME=Glamori
